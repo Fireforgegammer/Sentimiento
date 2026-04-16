@@ -1,0 +1,13 @@
+{
+    "sentimiento_global": "Neutral",
+    "polaridad": 0.2,
+    "fragmentos": [
+        "funciona muy bien",
+        "me parece caro"
+    ],
+    "justificacion": "El comentario tiene un sentimiento neutral porque, aunque el producto funciona bien, el precio es considerado alto.",
+    "tonalidad": "Crítica constructiva",
+    "recomendacion": "Revisar el precio del producto para hacerlo más competitivo en el mercado.",
+    "nivel": "avanzado",
+    "texto_original": "funciona muy bien, aunque me parece caro para las funciones que tiene."
+}

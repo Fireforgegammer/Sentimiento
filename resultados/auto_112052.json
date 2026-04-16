@@ -1,0 +1,13 @@
+{
+    "sentimiento_global": "Neutral",
+    "polaridad": 0.2,
+    "fragmentos": [
+        "me gusto mucho",
+        "me parece caro"
+    ],
+    "justificacion": "La persona tiene una opinión mixta sobre el producto, le gusta pero considera que es caro en relación con sus funciones.",
+    "tonalidad": "Crítica constructiva",
+    "recomendacion": "Considerar la relación calidad-precio y valorar si las funciones del producto justifican su costo.",
+    "nivel": "avanzado",
+    "texto_original": "me gusto mucho, aunque me parece caro para las funciones que tiene."
+}

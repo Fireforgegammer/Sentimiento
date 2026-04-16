@@ -1,13 +1,12 @@
 {
-    "sentimiento_global": "Neutral",
-    "polaridad": 0.2,
+    "sentimiento_global": "positivo",
+    "polaridad": 0.8,
     "fragmentos": [
-        "esta bastante bien",
-        "es un poco caro"
+        "me encanto"
     ],
-    "justificacion": "La opinión es neutral porque aunque se menciona algo positivo (\"esta bastante bien\"), también se menciona un aspecto negativo (\"es un poco caro\")",
-    "tonalidad": "Objetiva",
-    "recomendacion": "Considerar el valor por dinero para tomar una decisión informada",
+    "justificacion": "El texto expresa una opinion positiva hacia algo, utilizando palabras como 'me encanto' que indican un sentimiento de agrado y satisfaccion.",
+    "tonalidad": "entusiasta",
+    "recomendacion": "Si deseas expresar una opinion similar, puedes utilizar palabras como 'me gustó', 'me encantó' o 'me parece excelente' para transmitir un sentimiento positivo.",
     "nivel": "avanzado",
-    "texto_original": "esta bastante bien, pero es un poco caro"
+    "texto_original": "esta bien, me encanto"
 }
