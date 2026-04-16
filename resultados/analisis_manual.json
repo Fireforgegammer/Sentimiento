@@ -1,0 +1,13 @@
+{
+    "sentimiento_global": "Neutral",
+    "polaridad": 0.2,
+    "fragmentos": [
+        "esta bastante bien",
+        "es un poco caro"
+    ],
+    "justificacion": "La opinión es neutral porque aunque se menciona algo positivo (\"esta bastante bien\"), también se menciona un aspecto negativo (\"es un poco caro\")",
+    "tonalidad": "Objetiva",
+    "recomendacion": "Considerar el valor por dinero para tomar una decisión informada",
+    "nivel": "avanzado",
+    "texto_original": "esta bastante bien, pero es un poco caro"
+}

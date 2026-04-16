@@ -1,34 +1,54 @@
+import os
 import json
-from sentimiento.niveles import (
-    analizar_sentimiento_basico, 
-    analizar_sentimiento_intermedio, 
-    analizar_sentimiento_avanzado
-)
+from sentimiento.niveles import analizar_sentimiento_avanzado
 from sentimiento.multitexto import analizar_sentimiento_multitexto
 from almacenamiento.guardar import guardar_json
 
-def ejecutar_proyecto():
-    texto_prueba = "El producto llegó rápido, pero la calidad no es lo que esperaba. La verdad, estoy un poco decepcionado."
+def analizar_texto_manual():
+    texto = input("\nEscribe el texto a analizar: ")
+    if not texto.strip():
+        return
     
-    print("Ejecutando análisis individual...")
-    res_basico = analizar_sentimiento_basico(texto_prueba)
-    res_intermedio = analizar_sentimiento_intermedio(texto_prueba)
-    res_avanzado = analizar_sentimiento_avanzado(texto_prueba)
+    print("Procesando...")
+    resultado = analizar_sentimiento_avanzado(texto)
+    print(json.dumps(resultado, indent=2, ensure_ascii=False))
+    guardar_json(resultado, "analisis_manual.json")
 
-    reseñas = [
-        "Me encantó este producto, súper recomendado",
-        "Regular, cumple pero no es nada del otro mundo",
-        "Horrible, no compren esto, es una estafa"
-    ]
+def analizar_archivo_lote():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    ruta = os.path.join(base_dir, "textos_a_analizar.txt")
     
-    print("Ejecutando análisis de lote...")
-    res_multiple = analizar_sentimiento_multitexto(reseñas)
+    if not os.path.exists(ruta):
+        print(f"Error: No existe el archivo {ruta}")
+        return
 
-    print("Guardando resultados...")
-    guardar_json(res_avanzado, "analisis_individual.json")
-    guardar_json(res_multiple, "analisis_lote.json")
+    with open(ruta, "r", encoding="utf-8") as f:
+        lineas = [l.strip() for l in f if l.strip()]
+
+    if not lineas:
+        print("El archivo está vacío.")
+        return
+
+    print(f"Analizando {len(lineas)} textos...")
+    resultado = analizar_sentimiento_multitexto(lineas)
+    guardar_json(resultado, "resultado_lote.json")
     
-    print("Proceso finalizado. Archivos generados en la carpeta 'resultados/'.")
+    stats = resultado["estadisticas"]
+    print(f"\nResumen: {stats['positivos']} Positivos, {stats['negativos']} Negativos")
+
+def main():
+    print("--- SISTEMA DE ANÁLISIS DE SENTIMIENTO ---")
+    print("1. Analizar un texto manualmente")
+    print("2. Analizar archivo 'textos_a_analizar.txt'")
+    
+    opcion = input("\nSelecciona una opción (1 o 2): ")
+    
+    if opcion == "1":
+        analizar_texto_manual()
+    elif opcion == "2":
+        analizar_archivo_lote()
+    else:
+        print("Opción no válida.")
 
 if __name__ == "__main__":
-    ejecutar_proyecto()
+    main()

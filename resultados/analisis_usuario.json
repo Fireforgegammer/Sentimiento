@@ -1,0 +1,5 @@
+{
+    "nivel": "avanzado",
+    "error": "Error de parseo",
+    "respuesta_raw": "```\n{\n  \"sentimiento_global\": \"neutral\",\n  \"polaridad\": 0,\n  \"fragmentos\": [\n    {\n      \"texto\": \"hola\",\n      \"sentimiento_individual\": \"neutral\"\n    },\n    {\n      \"texto\": \"que tal\",\n      \"sentimiento_individual\": \"neutral\"\n    },\n    {\n      \"texto\": \"eestas hoy\",\n      \"sentimiento_individual\": \"neutral\"\n    }\n  ],\n  \"justificacion\": \"La frase es un saludo y una pregunta sobre el estado actual, sin expresar emociones positivas o negativas.\",\n  \"tonalidad\": \"coloquial\",\n  \"recomendacion\": \"Responder con un saludo y una breve descripción de cómo se encuentra.\"\n}\n```"
+}
