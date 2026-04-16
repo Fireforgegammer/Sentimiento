@@ -1,8 +1,11 @@
 import json
+import os
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 from datetime import datetime
 from tkinterdnd2 import DND_FILES, DND_TEXT
+from PIL import Image, ImageGrab
+import pytesseract
 
 from sentimiento.niveles import (
     analizar_sentimiento_basico,
@@ -14,18 +17,19 @@ from almacenamiento.guardar import guardar_json
 class AppSentimiento:
     def __init__(self, root):
         self.root = root
-        self.root.title("Análisis de Sentimiento - Local")
+        self.root.title("Análisis de Sentimiento - OCR & Clipboard")
         self.root.geometry("950x750")
         self.root.configure(bg="#f0f0f0")
 
-        self.placeholder = "Escribe, pega o arrastra texto o un archivo aquí..."
+        self.placeholder = "Escribe, pega (Ctrl+V) o arrastra texto/imagen aquí..."
         self.setup_ui()
         self.ultimo_resultado = None
         
         self.root.bind("<Key>", self.capturar_teclado_global)
+        self.root.bind("<Control-v>", self.pegar_desde_portapapeles)
 
     def setup_ui(self):
-        header = tk.Label(self.root, text="📝 ANÁLISIS DE SENTIMIENTO - LOCAL", font=("Segoe UI", 16, "bold"), bg="#f0f0f0")
+        header = tk.Label(self.root, text="📝 ANÁLISIS DE SENTIMIENTO - MULTIMODAL", font=("Segoe UI", 16, "bold"), bg="#f0f0f0")
         header.pack(anchor="w", padx=20, pady=(15, 10))
 
         self.text_input = tk.Text(self.root, height=6, font=("Segoe UI", 11), relief="solid", borderwidth=1, fg="grey")
@@ -46,9 +50,6 @@ class AppSentimiento:
 
         btn_limpiar = tk.Button(btn_frame, text="🧹 LIMPIAR", command=self.limpiar, bg="#e1e1e1", padx=10)
         btn_limpiar.pack(side="left", padx=10)
-
-        btn_guardar = tk.Button(btn_frame, text="💾 GUARDAR", command=self.guardar_manual, bg="#e1e1e1", padx=10)
-        btn_guardar.pack(side="left", padx=10)
 
         self.tab_control = ttk.Notebook(self.root)
         self.tab_niveles = tk.Frame(self.tab_control, bg="white")
@@ -80,28 +81,45 @@ class AppSentimiento:
             self.tree_historial.heading(col, text=col)
         self.tree_historial.pack(expand=1, fill="both", padx=10, pady=10)
 
-        self.status_var = tk.BooleanVar(value=False)
-        self.chk_status = tk.Checkbutton(self.root, text="Auto-guardado OK", variable=self.status_var, state="disabled", bg="#f0f0f0")
-        self.chk_status.pack(anchor="w", padx=20, pady=10)
+    def pegar_desde_portapapeles(self, event=None):
+        try:
+            img = ImageGrab.grabclipboard()
+            if isinstance(img, Image.Image):
+                texto_extraido = pytesseract.image_to_string(img, lang='spa')
+                self.insertar_texto_limpio(texto_extraido)
+                return "break"
+        except:
+            pass
 
     def procesar_drop_general(self, event):
         data = event.data
+        contenido = ""
         if data.startswith('{') and data.endswith('}'):
-            archivo = data.strip('{}')
-            if os.path.exists(archivo):
-                try:
-                    with open(archivo, 'r', encoding='utf-8') as f:
-                        contenido = f.read()
-                except:
-                    contenido = data
+            ruta = data.strip('{}')
+            if os.path.exists(ruta):
+                ext = os.path.splitext(ruta)[1].lower()
+                if ext in ['.png', '.jpg', '.jpeg', '.bmp', '.tiff']:
+                    try:
+                        contenido = pytesseract.image_to_string(Image.open(ruta), lang='spa')
+                    except:
+                        contenido = "Error: Tesseract no configurado."
+                else:
+                    try:
+                        with open(ruta, 'r', encoding='utf-8') as f:
+                            contenido = f.read()
+                    except:
+                        contenido = data
             else:
                 contenido = data
         else:
             contenido = data
+        self.insertar_texto_limpio(contenido)
 
-        self.text_input.delete("1.0", "end")
-        self.text_input.config(fg="black")
-        self.text_input.insert("1.0", contenido)
+    def insertar_texto_limpio(self, texto):
+        if texto.strip():
+            self.text_input.delete("1.0", "end")
+            self.text_input.config(fg="black")
+            self.text_input.insert("1.0", texto.strip())
 
     def capturar_teclado_global(self, event):
         if self.root.focus_get() != self.text_input:
@@ -143,30 +161,20 @@ class AppSentimiento:
     def ejecutar_analisis(self):
         texto = self.text_input.get("1.0", "end-1c").strip()
         if not texto or texto == self.placeholder: return
-
         self.btn_analizar.config(text="Procesando...", state="disabled")
         self.root.update()
-
         try:
             res_b = analizar_sentimiento_basico(texto)
             res_i = analizar_sentimiento_intermedio(texto)
             res_a = analizar_sentimiento_avanzado(texto)
-
-            self.ultimo_resultado = res_a
             self.actualizar_vistas(res_b, res_i, res_a, texto)
-            
-            guardar_json(res_a, f"auto_{datetime.now().strftime('%H%M%S')}.json")
-            self.status_var.set(True)
         except Exception as e:
-            messagebox.showerror("Error", f"Fallo en el análisis: {e}")
-        
+            messagebox.showerror("Error", f"Fallo: {e}")
         self.btn_analizar.config(text="🔍 ANALIZAR SENTIMIENTO", state="normal")
 
     def actualizar_vistas(self, b, i, a, texto_original):
         for row in self.tree.get_children(): self.tree.delete(row)
-        
-        def to_up(val): 
-            return str(val).upper() if val is not None and str(val).strip() != "" else "NEUTRAL"
+        def to_up(val): return str(val).upper() if val and str(val).strip() else "NEUTRAL"
 
         self.tree.insert("", "end", values=("Básico", to_up(b.get("sentimiento")), self.formatear_valor(b.get("polaridad")), self.formatear_valor(b.get("intensidad"), True)))
         self.tree.insert("", "end", values=("Intermedio", to_up(i.get("sentimiento")), self.formatear_valor(i.get("polaridad")), self.formatear_valor(i.get("intensidad"), True)))
@@ -174,27 +182,15 @@ class AppSentimiento:
 
         self.txt_detallado.delete("1.0", "end")
         self.txt_detallado.insert("1.0", json.dumps(a, indent=4, ensure_ascii=False))
-
         self.txt_justificacion.delete("1.0", "end")
         contenido = f"JUSTIFICACIÓN:\n{a.get('justificacion', 'No disponible')}\n\nRECOMENDACIÓN:\n{a.get('recomendacion', 'No disponible')}"
         self.txt_justificacion.insert("1.0", contenido)
-
         self.tree_historial.insert("", 0, values=(datetime.now().strftime("%H:%M:%S"), texto_original[:45]+"...", to_up(a.get("sentimiento_global"))))
 
     def limpiar(self):
         self.text_input.delete("1.0", "end")
         self.text_input.config(fg="grey")
         self.text_input.insert("1.0", self.placeholder)
-        self.root.focus_set()
         for row in self.tree.get_children(): self.tree.delete(row)
         self.txt_detallado.delete("1.0", "end")
         self.txt_justificacion.delete("1.0", "end")
-        self.status_var.set(False)
-        self.ultimo_resultado = None
-
-    def guardar_manual(self):
-        if not self.ultimo_resultado: return
-        archivo = filedialog.asksaveasfilename(defaultextension=".json", filetypes=[("JSON files", "*.json")])
-        if archivo:
-            with open(archivo, "w", encoding="utf-8") as f:
-                json.dump(self.ultimo_resultado, f, indent=4, ensure_ascii=False)
