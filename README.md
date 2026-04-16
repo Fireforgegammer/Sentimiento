@@ -1,2 +1,2 @@
 # Sentimiento
-Analisis Sentimiento con IA
+Analisis Sentimiento en texto con IA
