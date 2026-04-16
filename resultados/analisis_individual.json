@@ -1,0 +1,5 @@
+{
+    "nivel": "avanzado",
+    "error": "Error de parseo",
+    "respuesta_raw": "```\n{\n  \"sentimiento_global\": \"negativo\",\n  \"polaridad\": -0.5,\n  \"fragmentos\": [\n    {\n      \"texto\": \"El producto llegó rápido\",\n      \"sentimiento_individual\": \"positivo\"\n    },\n    {\n      \"texto\": \"pero la calidad no es lo que esperaba\",\n      \"sentimiento_individual\": \"negativo\"\n    },\n    {\n      \"texto\": \"La verdad, estoy un poco decepcionado\",\n      \"sentimiento_individual\": \"negativo\"\n    }\n  ],\n  \"justificacion\": \"Aunque el producto llegó rápido, lo que inicialmente podría considerarse un aspecto positivo, la calidad del producto no cumplió con las expectativas del cliente, lo que lleva a un sentimiento global negativo. La decepción expresada al final del comentario refuerza esta percepción.\",\n  \"tonalidad\": \"informal\",\n  \"recomendacion\": \"Revisar la calidad del producto y considerar mejorarla para aumentar la satisfacción del cliente.\"\n}\n```"
+}

@@ -1,0 +1,26 @@
+{
+    "resultados_individuales": [
+        {
+            "nivel": "intermedio",
+            "error": "Error de parseo",
+            "respuesta_raw": "```\n{\n  \"sentimiento\": \"positivo\",\n  \"polaridad\": 0.8,\n  \"emociones\": {\n    \"alegria\": 0.7,\n    \"tristeza\": 0.0,\n    \"enojo\": 0.0,\n    \"sorpresa\": 0.2,\n    \"miedo\": 0.0\n  },\n  \"intensidad\": \"alta\"\n}\n```"
+        },
+        {
+            "nivel": "intermedio",
+            "error": "Error de parseo",
+            "respuesta_raw": "```\n{\n  \"sentimiento\": \"neutral\",\n  \"polaridad\": 0,\n  \"emociones\": {\n    \"alegria\": 0.2,\n    \"tristeza\": 0.1,\n    \"enojo\": 0.1,\n    \"sorpresa\": 0.1,\n    \"miedo\": 0\n  },\n  \"intensidad\": \"baja\"\n}\n```"
+        },
+        {
+            "nivel": "intermedio",
+            "error": "Error de parseo",
+            "respuesta_raw": "```\n{\n  \"sentimiento\": \"negativo\",\n  \"polaridad\": -0.8,\n  \"emociones\": {\n    \"alegria\": 0,\n    \"tristeza\": 0.2,\n    \"enojo\": 0.6,\n    \"sorpresa\": 0.1,\n    \"miedo\": 0.1\n  },\n  \"intensidad\": \"alta\"\n}\n```"
+        }
+    ],
+    "estadisticas": {
+        "total": 3,
+        "positivos": 0,
+        "negativos": 0,
+        "neutrales": 0,
+        "polaridad_promedio": 0
+    }
+}
