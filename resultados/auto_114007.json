@@ -1,0 +1,13 @@
+{
+    "sentimiento_global": "neutral",
+    "polaridad": 0,
+    "fragmentos": [
+        "en un lugar de la mancha",
+        "de cuyo nombre no quiero acordarme"
+    ],
+    "justificacion": "La frase es una cita del inicio de la novela 'Don Quijote de la Mancha' de Miguel de Cervantes. El tono es neutral y descriptivo, sin expresar un sentimiento claro.",
+    "tonalidad": "literaria",
+    "recomendacion": "Si estás buscando analizar textos literarios, es importante considerar el contexto y la ironía que puede estar presente en la obra.",
+    "nivel": "avanzado",
+    "texto_original": "en un lugar de la mancha de cuyo nombre no quiero acordarme"
+}

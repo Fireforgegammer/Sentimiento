@@ -1,0 +1,14 @@
+{
+    "sentimiento_global": "positivo",
+    "polaridad": 0.8,
+    "fragmentos": [
+        "Importante",
+        "asegúrate",
+        "desaparece el error"
+    ],
+    "justificacion": "El texto proporciona una solución a un problema técnico y ofrece una explicación clara y concisa.",
+    "tonalidad": "ayudante",
+    "recomendacion": "Siguiendo los pasos indicados, es probable que se resuelva el error de ModuleNotFoundError.",
+    "nivel": "avanzado",
+    "texto_original": "Importante: He visto en tu ruta de terminal que la carpeta se llama interface (en inglés). Asegúrate"
+}

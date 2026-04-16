@@ -1,0 +1,14 @@
+{
+    "sentimiento_global": "Neutral",
+    "polaridad": 0.5,
+    "fragmentos": [
+        "Debería poner en todas las casillas algo",
+        "No una ralla",
+        "Sigue sin dejarme arrastrar el texto"
+    ],
+    "justificacion": "El usuario está expresando una mezcla de sentimientos, desde la frustración por no poder arrastrar el texto hasta la neutralidad al mencionar que debería poner algo en todas las casillas",
+    "tonalidad": "Frustración y neutralidad",
+    "recomendacion": "Revisar la funcionalidad de arrastre de texto y proporcionar retroalimentación clara sobre los requisitos de las casillas",
+    "nivel": "avanzado",
+    "texto_original": "deberia poner en todas las casillas algo no una ralla, y sigue sin dejarme arrastrar el texto x ejem"
+}

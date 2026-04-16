@@ -1,0 +1,5 @@
+{
+    "nivel": "avanzado",
+    "error": "Error de parseo",
+    "respuesta_raw": "```json\n{\n  \"sentimiento_global\": \"neutro\",\n  \"polaridad\": 0.5,\n  \"fragmentos\": [\"texto analizado\"],\n  \"justificacion\": \"análisis de sentimiento\",\n  \"tonalidad\": \"objetiva\",\n  \"recomendacion\": \"revisar texto\"\n}\n``` \n\nComentarios: \n- El sentimiento global se establece en \"neutro\" debido a la falta de información emocional en el texto.\n- La polaridad se establece en 0.5, lo que indica un sentimiento neutral.\n- Los fragmentos se establecen en [\"texto analizado\"] ya que no se proporcionó un texto específico para analizar.\n- La justificación se establece en \"análisis de sentimiento\" como razón para la evaluación.\n- La tonalidad se establece en \"objetiva\" debido a la falta de lenguaje subjetivo en el texto.\n- La recomendación se establece en \"revisar texto\" para mejorar la claridad y el sentimiento del texto."
+}

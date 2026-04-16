@@ -1,0 +1,13 @@
+{
+    "sentimiento_global": "Neutral",
+    "polaridad": 0.5,
+    "fragmentos": [
+        "hola",
+        "que tal"
+    ],
+    "justificacion": "El texto es un saludo común y no expresa una emoción o opinión clara.",
+    "tonalidad": "Amistosa",
+    "recomendacion": "No se requiere una respuesta específica, pero se puede responder con un saludo similar.",
+    "nivel": "avanzado",
+    "texto_original": "hola que tal"
+}

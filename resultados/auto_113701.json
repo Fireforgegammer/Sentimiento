@@ -1,0 +1,14 @@
+{
+    "sentimiento_global": "positivo",
+    "polaridad": 0.6,
+    "fragmentos": [
+        "me a gustado mucho",
+        "tiene muchas funciones interesantes",
+        "aunque no es apta para cualquier bolsillo"
+    ],
+    "justificacion": "La opinión es generalmente positiva, ya que se mencionan aspectos que gustaron, como las funciones interesantes. Sin embargo, se menciona un aspecto negativo relacionado con el precio o el costo.",
+    "tonalidad": "neutral con un toque de crítica constructiva",
+    "recomendacion": "Recomendado para aquellos que buscan un producto con funciones interesantes y están dispuestos a invertir en él.",
+    "nivel": "avanzado",
+    "texto_original": "me a gustado mucho, tiene muchas funciones interesantes, aunque no es apta para cualquier bolsillo"
+}

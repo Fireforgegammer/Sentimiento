@@ -1,0 +1,12 @@
+{
+    "sentimiento_global": "Neutral",
+    "polaridad": 0,
+    "fragmentos": [
+        "hola"
+    ],
+    "justificacion": "El texto es un saludo simple y no expresa ninguna emoción o opinión específica.",
+    "tonalidad": "Amistoso",
+    "recomendacion": "No se requiere ninguna acción específica, solo una respuesta de saludo.",
+    "nivel": "avanzado",
+    "texto_original": "hola"
+}
