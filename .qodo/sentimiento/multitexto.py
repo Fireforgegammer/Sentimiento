@@ -20,3 +20,4 @@ def analizar_sentimiento_multitexto(textos: list) -> dict:
         "resultados_individuales": resultados,
         "estadisticas": estadisticas
     }
+    

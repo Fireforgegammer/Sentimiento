@@ -194,3 +194,4 @@ class AppSentimiento:
         for row in self.tree.get_children(): self.tree.delete(row)
         self.txt_detallado.delete("1.0", "end")
         self.txt_justificacion.delete("1.0", "end")
+        

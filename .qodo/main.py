@@ -4,6 +4,8 @@ from sentimiento.niveles import analizar_sentimiento_avanzado
 from sentimiento.multitexto import analizar_sentimiento_multitexto
 from almacenamiento.guardar import guardar_json
 
+# prueba
+
 def analizar_texto_manual():
     texto = input("\nEscribe el texto a analizar: ")
     if not texto.strip():
@@ -52,3 +54,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

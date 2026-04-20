@@ -65,3 +65,4 @@ def analizar_sentimiento_avanzado(texto: str) -> dict:
         return resultado
     except:
         return {"nivel": "avanzado", "error": "Error de parseo", "respuesta_raw": contenido_raw}
+    

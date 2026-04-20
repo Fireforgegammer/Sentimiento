@@ -166,3 +166,4 @@ for i, res in enumerate(resultado_multiple['resultados_individuales']):
     if res.get('emociones'):
         emocion_principal = max(res['emociones'].items(), key=lambda x: x[1]) if res['emociones'] else ("ninguna", 0)
         print(f"   → Emoción principal: {emocion_principal[0]}")
+        
